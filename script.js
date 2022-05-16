@@ -199,7 +199,6 @@ const app = {
 
   filterJobs(e) {
     const filter = e.target.dataset.filter;
-    console.log(e.target);
     if (!app.currentFilters.includes(filter)) {
       app.currentFilters.push(filter);
       app.searchThroughFilters();

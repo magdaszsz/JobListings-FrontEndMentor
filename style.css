@@ -126,6 +126,31 @@ header {
   font-weight: 500;
 }
 
+@media (min-width: 900px) {
+  header {
+    background-image: url(images/bg-header-desktop.svg);
+  }
+
+  .job-card {
+    display: flex;
+    align-items: center;
+  }
+
+  .job-image {
+    margin-top: 0;
+  }
+
+  .tag-list {
+    margin-left: auto;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .job-info {
+    margin-left: 1.5rem;
+  }
+}
+
 
 .hide {
   display: none;
@@ -176,27 +201,3 @@ p {
   }
 }
 
-@media (min-width: 900px) {
-  header {
-    background-image: url(images/bg-header-desktop.svg);
-  }
-
-  .job-card {
-    display: flex;
-    align-items: center;
-  }
-
-  .job-image {
-    margin-top: 0;
-  }
-
-  .tag-list {
-    margin-left: auto;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .job-info {
-    margin-left: 1.5rem;
-  }
-}
