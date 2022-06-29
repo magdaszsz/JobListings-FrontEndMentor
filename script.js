@@ -2,19 +2,6 @@ const jobsWrapper = document.querySelector(".wrapper");
 const currentFiltersWrapper = document.querySelector(
   ".current-filters-wrapper"
 );
-//const currentFilters = [];
-
-// on clicking the tag remove it and filter through jobs again
-
-currentFiltersWrapper.addEventListener("click", function (e) {
-  if (e.target.classList[0] === "remove-btn") {
-    const clickedFilter = e.target.parentElement.classList[1];
-    const i = app.currentFilters.indexOf(clickedFilter);
-    app.currentFilters.splice(i, 1);
-    e.target.parentElement.remove();
-    app.searchThroughFilters();
-  }
-});
 
 const jobsArray = [
   {
@@ -169,14 +156,21 @@ const jobsArray = [
   },
 ];
 
-// dynamiacally create job listing elements
-
 const app = {
   currentFilters: [],
 
   init() {
     app.createHTML();
     app.addTagListeners();
+  },
+  removeTag(e) {
+    if (e.target.classList[0] === "remove-btn") {
+      const clickedFilter = e.target.parentElement.classList[1];
+      const i = app.currentFilters.indexOf(clickedFilter);
+      app.currentFilters.splice(i, 1);
+      e.target.parentElement.remove();
+      app.searchThroughFilters();
+    }
   },
   showFilters() {
     currentFiltersWrapper.innerHTML = "";
@@ -210,6 +204,7 @@ const app = {
     const btns = document.querySelectorAll("li");
 
     btns.forEach((btn) => btn.addEventListener("click", app.filterJobs));
+    currentFiltersWrapper.addEventListener("click", app.removeTag);
   },
   searchThroughFilters() {
     const jobs = document.querySelectorAll(".job-card");
@@ -243,6 +238,10 @@ const app = {
       jobHeader.textContent = el.company;
       jobInfoTop.appendChild(jobHeader);
       jobInfo.appendChild(jobInfoTop);
+      const jobTitle = document.createElement('h3');
+      jobTitle.className = 'job-title';
+      jobTitle.textContent = el.position;
+      jobInfo.appendChild(jobTitle);
       if (el.new) {
         const newJob = document.createElement("p");
         newJob.className = "new";
